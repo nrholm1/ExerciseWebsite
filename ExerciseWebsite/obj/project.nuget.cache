@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "STQBe4V+nWjjWFEInEILyw5abEjVduR4uEnTvyOVCE+aUSUwzOLJXYZcELoTUy6eFsVxdFyt3/PDqnuYlodmrQ==",
+  "dgSpecHash": "AjmxLiV9Z+gxQAx2FiWMh9nrAz4RFOQdjAV8VMQq8gL8HA+2lJpPtgMPpVexx6RR64FU2YY4ESuREvvZ1omi2g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Niels Raunkjær Holm\\source\\repos\\ExerciseWebsite\\ExerciseWebsite\\ExerciseWebsite.csproj",
   "expectedPackageFiles": [
@@ -15,10 +15,12 @@
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore\\3.1.6\\microsoft.entityframeworkcore.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.6\\microsoft.entityframeworkcore.abstractions.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.6\\microsoft.entityframeworkcore.analyzers.3.1.6.nupkg.sha512",
+    "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.6\\microsoft.entityframeworkcore.design.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.6\\microsoft.entityframeworkcore.relational.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\3.1.6\\microsoft.entityframeworkcore.sqlite.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\3.1.6\\microsoft.entityframeworkcore.sqlite.core.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.6\\microsoft.entityframeworkcore.sqlserver.3.1.6.nupkg.sha512",
+    "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.6\\microsoft.entityframeworkcore.tools.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.6\\microsoft.extensions.caching.abstractions.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.6\\microsoft.extensions.caching.memory.3.1.6.nupkg.sha512",
     "C:\\Users\\Niels Raunkjær Holm\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.6\\microsoft.extensions.configuration.3.1.6.nupkg.sha512",

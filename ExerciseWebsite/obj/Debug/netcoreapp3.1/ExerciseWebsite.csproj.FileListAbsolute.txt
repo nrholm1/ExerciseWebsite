@@ -69,8 +69,9 @@ C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\bin\D
 C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\bin\Debug\netcoreapp3.1\ExerciseWebsite.dll
 C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\bin\Debug\netcoreapp3.1\ExerciseWebsite.pdb
 C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\obj\Debug\netcoreapp3.1\ExerciseWebsite.csproj.CoreCompileInputs.cache
-C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\obj\Debug\netcoreapp3.1\ExerciseWebsite.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\obj\Debug\netcoreapp3.1\ExerciseWebsite.dll
 C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\obj\Debug\netcoreapp3.1\ExerciseWebsite.pdb
 C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\obj\Debug\netcoreapp3.1\ExerciseWebsite.genruntimeconfig.cache
+C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\obj\Debug\netcoreapp3.1\ExerciseWebsite.csproj.CoreCompileInputs.cache
+C:\Users\Niels Raunkjær Holm\source\repos\ExerciseWebsite\ExerciseWebsite\obj\Debug\netcoreapp3.1\ExerciseWebsite.MvcApplicationPartsAssemblyInfo.cache

@@ -3,7 +3,6 @@ using ExerciseWebsite.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace ExerciseWebsite.Services
@@ -59,6 +58,8 @@ namespace ExerciseWebsite.Services
             if (workout == null)
                 throw new AppException($"No workout with id {workoutParam.Id} found.");
 
+
+            workout.Title = workoutParam.Title;
             workout.Description = workoutParam.Description;
 
             _context.SaveChanges();
