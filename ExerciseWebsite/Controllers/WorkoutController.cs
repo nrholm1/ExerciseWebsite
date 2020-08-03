@@ -2,34 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ExerciseWebsite.Entities;
+using ExerciseWebsite.Services;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ExerciseWebsite.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class WorkoutController : ControllerBase
     {
+        private IWorkoutService _workoutService;
+        public WorkoutController(IWorkoutService workoutService)
+        {
+            _workoutService = workoutService;
+        }
+
         // GET: api/<WorkoutController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult GetAll()
         {
-            return new string[] { "value1", "value2" };
+            var workouts = _workoutService.GetAll();
+            return Ok(workouts);
         }
 
         // GET api/<WorkoutController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetById(int id)
         {
-            return "value";
+            var workout = _workoutService.GetById(id);
+            return Ok(workout);
         }
 
         // POST api/<WorkoutController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Create([FromBody] Workout workout)
         {
+
         }
 
         // PUT api/<WorkoutController>/5
