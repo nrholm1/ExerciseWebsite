@@ -7,6 +7,6 @@
         public string Description { get; set; }
         public string MuscleGroup { get; set; }
         public string ExType { get; set; }
-        public int Difficulty { get; set; }
+        public double Difficulty { get; set; }
     }
 }
