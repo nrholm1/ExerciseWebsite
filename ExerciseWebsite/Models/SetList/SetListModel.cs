@@ -9,3 +9,4 @@ namespace ExerciseWebsite.Models.SetList
         public DateTime DateAdded { get; set; }
     }
 }
+ 
