@@ -40,10 +40,6 @@ namespace ExerciseWebsite.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Exercise> GetByExerciseListId(int ExerciseListId)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Update(Exercise Exercise)
         {

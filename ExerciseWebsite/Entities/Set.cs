@@ -8,6 +8,9 @@ namespace ExerciseWebsite.Entities
         
         [ForeignKey("Exercise")]
         public int ExerciseId { get; set; }
+
+        [ForeignKey("SetList")]
+        public int SetListId { get; set; }
         public int SetCount { get; set; }
         public int RepCount { get; set; }
     }
