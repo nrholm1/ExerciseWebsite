@@ -37,20 +37,20 @@ namespace ExerciseWebsite.Controllers
 
         // POST api/<WorkoutController>
         [HttpPost]
-        public void Create([FromBody] Workout workout)
+        public async void Create([FromBody] Workout workout)
         {
 
         }
 
         // PUT api/<WorkoutController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/<WorkoutController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(int id)
         {
         }
     }

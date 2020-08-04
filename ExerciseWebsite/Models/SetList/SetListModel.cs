@@ -1,13 +1,9 @@
-﻿using System;
-
-namespace ExerciseWebsite.Models.SetList
+﻿namespace ExerciseWebsite.Models.SetList
 {
     public class SetListModel
     {
+        public int Id { get; set; }
         public int WorkoutId { get; set; }
-        public int SetId { get; set; }
-        public int OrderNo { get; set; }
-        public DateTime DateAdded { get; set; }
     }
 }
  

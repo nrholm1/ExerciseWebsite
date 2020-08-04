@@ -9,10 +9,5 @@ namespace ExerciseWebsite.Entities
 
         [ForeignKey("Workout")]
         public int WorkoutId { get; set; }
-
-        [ForeignKey("Set")]
-        public int SetId { get; set; }
-        public int OrderNo { get; set; }
-        public DateTime DateAdded { get; set; }
     }
 }
