@@ -21,17 +21,17 @@ namespace ExerciseWebsite.Controllers
 
         // GET: api/<WorkoutController>
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var workouts = _workoutService.GetAll();
+            var workouts = await _workoutService.GetAllAsync();
             return Ok(workouts);
         }
 
         // GET api/<WorkoutController>/5
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var workout = _workoutService.GetById(id);
+            var workout = await _workoutService.GetById(id);
             return Ok(workout);
         }
 

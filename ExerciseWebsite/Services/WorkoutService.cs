@@ -3,15 +3,16 @@ using ExerciseWebsite.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace ExerciseWebsite.Services
 {
     public interface IWorkoutService
     {
-        Workout Create(Workout workout);
-        Workout GetById(int id);
-        IEnumerable<Workout> GetAll();
+        Task<Workout> Create(Workout workout);
+        Task<Workout> GetById(int id);
+        Task<IEnumerable<Workout>> GetAllAsync();
         void Update(Workout workoutParam);
         void UpdateAvgDifficulty(int id, double avgDifficulty);
         void Delete(int id);
@@ -26,14 +27,20 @@ namespace ExerciseWebsite.Services
             _context = context;
         }
 
-        public Workout Create(Workout workout)
+        public async Task<Workout> Create(Workout workout)
         {
             // Check if already added?
 
             _context.Workouts.Add(workout);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return workout;
+        }
+
+        public async Task<IEnumerable<Workout>> GetAllAsync()
+        {
+            IEnumerable<Workout> workouts;
+            return await Task.Run(() => workouts = GetAll());
         }
 
         public IEnumerable<Workout> GetAll()
@@ -41,9 +48,9 @@ namespace ExerciseWebsite.Services
             return _context.Workouts;
         }
 
-        public Workout GetById(int id)
+        public async Task<Workout> GetById(int id)
         {
-            var workout = _context.Workouts.Find(id);
+            var workout = await _context.Workouts.FindAsync(id);
 
             if (workout != null)
                 return workout;
@@ -51,9 +58,9 @@ namespace ExerciseWebsite.Services
                 throw new AppException($"No workout with id {id} found.");
         }
 
-        public void Update(Workout workoutParam)
+        public async void Update(Workout workoutParam)
         {
-            var workout = _context.Workouts.Find(workoutParam.Id);
+            var workout = await _context.Workouts.FindAsync(workoutParam.Id);
 
             if (workout == null)
                 throw new AppException($"No workout with id {workoutParam.Id} found.");
@@ -62,28 +69,28 @@ namespace ExerciseWebsite.Services
             workout.Title = workoutParam.Title;
             workout.Description = workoutParam.Description;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateAvgDifficulty(int id, double avgDifficulty)
+        public async void UpdateAvgDifficulty(int id, double avgDifficulty)
         {
-            var workout = _context.Workouts.Find(id);
+            var workout = await _context.Workouts.FindAsync(id);
             
             if (workout == null)
                 throw new AppException($"No workout with id {id} found.");
 
             workout.AvgDifficulty = avgDifficulty;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async void Delete(int id)
         {
-            var workout = _context.Workouts.Find(id);
+            var workout = await _context.Workouts.FindAsync(id);
 
             if (workout != null)
             {
                 _context.Workouts.Remove(workout);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             else
                 throw new AppException($"Workout with id {id} does not exist");
