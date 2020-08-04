@@ -48,13 +48,7 @@ namespace ExerciseWebsite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("ExerciseId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("OrderNo")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("RepCount")
@@ -75,6 +69,15 @@ namespace ExerciseWebsite.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OrderNo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SetId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("WorkoutId")
