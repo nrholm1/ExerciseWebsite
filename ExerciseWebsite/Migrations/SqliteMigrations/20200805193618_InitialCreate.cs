@@ -47,7 +47,6 @@ namespace ExerciseWebsite.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ExerciseId = table.Column<int>(nullable: false),
-                    SetListId = table.Column<int>(nullable: false),
                     SetCount = table.Column<int>(nullable: false),
                     RepCount = table.Column<int>(nullable: false)
                 },
@@ -67,6 +66,7 @@ namespace ExerciseWebsite.Migrations
                     Description = table.Column<string>(nullable: true),
                     AvgDifficulty = table.Column<double>(nullable: false),
                     Rating = table.Column<int>(nullable: false),
+                    RatingCount = table.Column<int>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

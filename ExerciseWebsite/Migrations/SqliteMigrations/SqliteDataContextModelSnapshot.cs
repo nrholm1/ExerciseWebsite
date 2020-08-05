@@ -57,9 +57,6 @@ namespace ExerciseWebsite.Migrations
                     b.Property<int>("SetCount")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SetListId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.ToTable("Sets");
@@ -104,6 +101,9 @@ namespace ExerciseWebsite.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Rating")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RatingCount")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SetListId")
