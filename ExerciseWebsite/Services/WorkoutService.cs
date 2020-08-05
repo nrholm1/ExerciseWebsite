@@ -2,8 +2,6 @@
 using ExerciseWebsite.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace ExerciseWebsite.Services
@@ -13,9 +11,10 @@ namespace ExerciseWebsite.Services
         Task<Workout> Create(Workout workout);
         Task<Workout> GetById(int id);
         Task<IEnumerable<Workout>> GetAllAsync();
-        void Update(Workout workoutParam);
-        void UpdateAvgDifficulty(int id, double avgDifficulty);
-        void Delete(int id);
+        Task Update(Workout workoutParam);
+        Task UpdateRating(int id, int newRating);
+        Task UpdateAvgDifficulty(int id, double avgDifficulty);
+        Task Delete(int id);
 
     }
     public class WorkoutService : IWorkoutService
@@ -58,7 +57,7 @@ namespace ExerciseWebsite.Services
                 throw new AppException($"No workout with id {id} found.");
         }
 
-        public async void Update(Workout workoutParam)
+        public async Task Update(Workout workoutParam)
         {
             var workout = await _context.Workouts.FindAsync(workoutParam.Id);
 
@@ -72,7 +71,19 @@ namespace ExerciseWebsite.Services
             await _context.SaveChangesAsync();
         }
 
-        public async void UpdateAvgDifficulty(int id, double avgDifficulty)
+        public async Task UpdateRating(int id, int newRating)
+        {
+            var workout = await _context.Workouts.FindAsync(id);
+
+            if (workout == null)
+                throw new AppException($"No workout with id {id} found.");
+
+            workout.RatingCount++;
+            workout.Rating = (workout.Rating * workout.RatingCount + newRating) / workout.RatingCount;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAvgDifficulty(int id, double avgDifficulty)
         {
             var workout = await _context.Workouts.FindAsync(id);
             
@@ -83,7 +94,7 @@ namespace ExerciseWebsite.Services
             await _context.SaveChangesAsync();
         }
 
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             var workout = await _context.Workouts.FindAsync(id);
 

@@ -13,6 +13,7 @@ namespace ExerciseWebsite.Entities
         public string Description { get; set; }
         public double AvgDifficulty { get; set; }
         public int Rating { get; set; }
+        public int RatingCount { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }

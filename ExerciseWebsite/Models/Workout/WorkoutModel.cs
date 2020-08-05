@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ExerciseWebsite.Models.Workout
+﻿namespace ExerciseWebsite.Models.Workout
 {
     public class WorkoutModel
     {
@@ -10,6 +8,7 @@ namespace ExerciseWebsite.Models.Workout
         public string Description { get; set; }
         public double AvgDifficulty { get; set; }
         public int Rating { get; set; }
-        public DateTime DateCreated { get; set; }
+        public int RatingCount { get; set; }
+        public System.DateTime DateCreated { get; set; }
     }
 }
