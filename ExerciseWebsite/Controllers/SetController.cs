@@ -1,46 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using AutoMapper;
+using ExerciseWebsite.Entities;
+using ExerciseWebsite.Helpers;
+using ExerciseWebsite.Models.Set;
+using ExerciseWebsite.Services;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace ExerciseWebsite.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SetController : ControllerBase
     {
+        private ISetService _setService;
+        private IMapper _mapper;
+        public SetController(ISetService SetService,
+                                 IMapper mapper)
+        {
+            _setService = SetService;
+            _mapper = mapper;
+        }
+
         // GET: api/<SetController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult GetAll()
         {
-            return new string[] { "value1", "value2" };
+            var Sets = _setService.GetAll();
+            return Ok(Sets);
         }
 
         // GET api/<SetController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return "value";
+            var Set = await _setService.GetById(id);
+            return Ok(Set);
         }
 
         // POST api/<SetController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Create([FromBody] SetModel model)
         {
+            var Set = _mapper.Map<Set>(model);
+
+            try
+            {
+                await _setService.Create(Set);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+
         }
 
-        // PUT api/<SetController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateSet model)
         {
+            var Set = _mapper.Map<Set>(model);
+            Set.Id = id;
+
+            try
+            {
+                await _setService.Update(Set);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         // DELETE api/<SetController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _setService.Delete(id);
+            return Ok();
         }
     }
 }

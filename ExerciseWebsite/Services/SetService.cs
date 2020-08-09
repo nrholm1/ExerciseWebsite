@@ -1,20 +1,18 @@
 ﻿using ExerciseWebsite.Entities;
 using ExerciseWebsite.Helpers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ExerciseWebsite.Services
 {
     public interface ISetService
     {
-        Set Create(Set set);
+        Task<Set> Create(Set Set);
+        Task<Set> GetById(int id);
         IEnumerable<Set> GetAll();
-        IEnumerable<Set> GetBySetListId(int setListId);
-        Set GetById(int id);
-        void Update(Set set);
-        void Delete(Set set);
+        Task Update(Set SetParam);
+        Task Delete(int id);
+
     }
     public class SetService : ISetService
     {
@@ -25,34 +23,57 @@ namespace ExerciseWebsite.Services
             _context = context;
         }
 
-        public Set Create(Set set)
+        public async Task<Set> Create(Set Set)
         {
-            throw new NotImplementedException();
-        }
+            // Check if already added?
 
+            _context.Sets.Add(Set);
+            await _context.SaveChangesAsync();
+
+            return Set;
+        }
 
         public IEnumerable<Set> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Sets;
         }
 
-        public Set GetById(int id)
+        public async Task<Set> GetById(int id)
         {
-            throw new NotImplementedException();
+            var Set = await _context.Sets.FindAsync(id);
+
+            if (Set != null)
+                return Set;
+            else
+                throw new AppException($"No Set with id {id} found.");
         }
 
-        public IEnumerable<Set> GetBySetListId(int setListId)
+        public async Task Update(Set SetParam)
         {
-            throw new NotImplementedException();
+            var Set = await _context.Sets.FindAsync(SetParam.Id);
+
+            if (Set == null)
+                throw new AppException($"No Set with id {SetParam.Id} found.");
+
+            Set.ExerciseId = SetParam.ExerciseId;
+            Set.RepCount = SetParam.RepCount;
+            Set.SetCount = SetParam.SetCount;
+
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(Set set)
+
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-        public void Delete(Set set)
-        {
-            throw new NotImplementedException();
+            var Set = await _context.Sets.FindAsync(id);
+
+            if (Set != null)
+            {
+                _context.Sets.Remove(Set);
+                await _context.SaveChangesAsync();
+            }
+            else
+                throw new AppException($"Set with id {id} does not exist");
         }
     }
 }
