@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using ExerciseWebsite.Entities;
+using ExerciseWebsite.Helpers;
+using ExerciseWebsite.Models.Exercise;
 using ExerciseWebsite.Services;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace ExerciseWebsite.Controllers
 {
@@ -14,41 +13,71 @@ namespace ExerciseWebsite.Controllers
     public class ExerciseController : ControllerBase
     {
         private IExerciseService _exerciseService;
-        public ExerciseController(IExerciseService exerciseService)
+        private IMapper _mapper;
+        public ExerciseController(IExerciseService exerciseService,
+                                 IMapper mapper)
         {
             _exerciseService = exerciseService;
+            _mapper = mapper;
         }
 
         // GET: api/<ExerciseController>
-        //[HttpGet]
-        //public IEnumerable<Exercise> GetAll()
-        //{
-        //    //return _exerciseService.
-        //}
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var exercises = _exerciseService.GetAll();
+            return Ok(exercises);
+        }
 
         // GET api/<ExerciseController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return "value";
+            var exercise = await _exerciseService.GetById(id);
+            return Ok(exercise);
         }
 
         // POST api/<ExerciseController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Create([FromBody] ExerciseModel model)
         {
+            var exercise = _mapper.Map<Exercise>(model);
+
+            try
+            {
+                await _exerciseService.Create(exercise);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+
         }
 
-        // PUT api/<ExerciseController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Update(int id, [FromBody] ExerciseModel model)
         {
+            var exercise = _mapper.Map<Exercise>(model);
+            exercise.Id = id;
+
+            try
+            {
+                await _exerciseService.Update(exercise);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         // DELETE api/<ExerciseController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _exerciseService.Delete(id);
+            return Ok();
         }
     }
 }
