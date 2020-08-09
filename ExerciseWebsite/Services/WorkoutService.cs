@@ -10,7 +10,7 @@ namespace ExerciseWebsite.Services
     {
         Task<Workout> Create(Workout workout);
         Task<Workout> GetById(int id);
-        Task<IEnumerable<Workout>> GetAllAsync();
+        IEnumerable<Workout> GetAll();
         Task Update(Workout workoutParam);
         Task UpdateRating(int id, int newRating);
         Task UpdateAvgDifficulty(int id, double avgDifficulty);
@@ -34,12 +34,6 @@ namespace ExerciseWebsite.Services
             await _context.SaveChangesAsync();
 
             return workout;
-        }
-
-        public async Task<IEnumerable<Workout>> GetAllAsync()
-        {
-            IEnumerable<Workout> workouts;
-            return await Task.Run(() => workouts = GetAll());
         }
 
         public IEnumerable<Workout> GetAll()
@@ -79,7 +73,7 @@ namespace ExerciseWebsite.Services
                 throw new AppException($"No workout with id {id} found.");
 
             workout.RatingCount++;
-            workout.Rating = (workout.Rating * workout.RatingCount + newRating) / workout.RatingCount;
+            workout.Rating = (workout.Rating * (workout.RatingCount - 1) + newRating) / workout.RatingCount;
             await _context.SaveChangesAsync();
         }
 

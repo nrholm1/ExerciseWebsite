@@ -5,7 +5,6 @@ using ExerciseWebsite.Helpers;
 using ExerciseWebsite.Models.Workout;
 using ExerciseWebsite.Services;
 using Microsoft.AspNetCore.Mvc;
-using SQLitePCL;
 
 namespace ExerciseWebsite.Controllers
 {
@@ -24,9 +23,9 @@ namespace ExerciseWebsite.Controllers
 
         // GET: api/<WorkoutController>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
-            var workouts = await _workoutService.GetAllAsync();
+            var workouts = _workoutService.GetAll();
             return Ok(workouts);
         }
 
@@ -56,7 +55,6 @@ namespace ExerciseWebsite.Controllers
 
         }
 
-        // PUT api/<WorkoutController>/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateWorkout model)
         {
