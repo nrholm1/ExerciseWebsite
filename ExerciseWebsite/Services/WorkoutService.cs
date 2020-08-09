@@ -13,6 +13,7 @@ namespace ExerciseWebsite.Services
         Task Update(Workout workoutParam);
         Task UpdateRating(int id, int newRating);
         Task UpdateAvgDifficulty(int id, double avgDifficulty);
+        Task UpdateFullObject(Workout workoutParam);
         Task Delete(int id);
 
     }
@@ -84,6 +85,24 @@ namespace ExerciseWebsite.Services
                 throw new AppException($"No workout with id {id} found.");
 
             workout.AvgDifficulty = avgDifficulty;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateFullObject(Workout workoutParam)
+        {
+            var workout = await _context.Workouts.FindAsync(workoutParam.Id);
+
+            if (workout == null)
+                throw new AppException($"No workout with id {workoutParam.Id} found.");
+
+            workout.Title = workoutParam.Title;
+            workout.Description = workoutParam.Description;
+            workout.SetListId = workoutParam.SetListId;
+            workout.AvgDifficulty = workoutParam.AvgDifficulty;
+            workout.Rating = workoutParam.Rating;
+            workout.RatingCount = workoutParam.RatingCount;
+            workout.DateCreated = workoutParam.DateCreated;
+
             await _context.SaveChangesAsync();
         }
 

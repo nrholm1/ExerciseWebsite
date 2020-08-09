@@ -86,6 +86,23 @@ namespace ExerciseWebsite.Controllers
             }
         }
 
+        [HttpPut("{id}/full")]
+        public async Task<IActionResult> UpdateFullObject(int id, [FromBody] WorkoutModel model)
+        {
+            var workout = _mapper.Map<Workout>(model);
+            workout.Id = id;
+
+            try
+            {
+                await _workoutService.UpdateFullObject(workout);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
         // DELETE api/<WorkoutController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
