@@ -11,16 +11,16 @@ namespace ExerciseWebsite.Helpers
     {
         public AutoMapperProfile()
         {
-            CreateMap<Workout, WorkoutModel>();
+            CreateMap<Workout, WorkoutModel>().ReverseMap();
             CreateMap<UpdateWorkout, Workout>();
             CreateMap<CreateWorkout, Workout>();
 
-            CreateMap<Set, SetModel>();
+            CreateMap<Set, SetModel>().ReverseMap();
             CreateMap<UpdateSet, Set>();
 
-            CreateMap<Exercise, ExerciseModel>();
+            CreateMap<Exercise, ExerciseModel>().ReverseMap();
 
-            CreateMap<SetList, SetListModel>();
+            CreateMap<SetList, SetListModel>().ReverseMap();
         }
     }
 }
