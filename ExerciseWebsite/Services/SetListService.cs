@@ -1,19 +1,18 @@
 ﻿using ExerciseWebsite.Entities;
 using ExerciseWebsite.Helpers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ExerciseWebsite.Services
 {
     public interface ISetListService
     {
-        SetList Create(SetList SetList);
+        Task<SetList> Create(SetList setList);
+        Task<SetList> GetById(int id);
         IEnumerable<SetList> GetAll();
-        SetList GetById(int id);
-        void Update(SetList SetList);
-        void Delete(SetList SetList);
+        Task Update(SetList SetListParam);
+        Task Delete(int id);
+
     }
     public class SetListService : ISetListService
     {
@@ -24,30 +23,57 @@ namespace ExerciseWebsite.Services
             _context = context;
         }
 
-        public SetList Create(SetList SetList)
+        public async Task<SetList> Create(SetList setList)
         {
-            throw new NotImplementedException();
-        }
+            // Check if already added?
 
+            _context.SetLists.Add(setList);
+            await _context.SaveChangesAsync();
+
+            return setList;
+        }
 
         public IEnumerable<SetList> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.SetLists;
         }
 
-        public SetList GetById(int id)
+        public async Task<SetList> GetById(int id)
         {
-            throw new NotImplementedException();
+            var setList = await _context.SetLists.FindAsync(id);
+
+            if (setList != null)
+                return setList;
+            else
+                throw new AppException($"No setList with id {id} found.");
+        }
+
+        public async Task Update(SetList setListParam)
+        {
+            var setList = await _context.SetLists.FindAsync(setListParam.Id);
+
+            if (setList == null)
+                throw new AppException($"No setList with id {setListParam.Id} found.");
+
+            setList.OrderNo = setListParam.OrderNo;
+            setList.SetId = setListParam.SetId;
+            setList.WorkoutId = setListParam.WorkoutId;
+            
+            await _context.SaveChangesAsync();
         }
 
 
-        public void Update(SetList SetList)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-        public void Delete(SetList SetList)
-        {
-            throw new NotImplementedException();
+            var SetList = await _context.SetLists.FindAsync(id);
+
+            if (SetList != null)
+            {
+                _context.SetLists.Remove(SetList);
+                await _context.SaveChangesAsync();
+            }
+            else
+                throw new AppException($"SetList with id {id} does not exist");
         }
     }
 }

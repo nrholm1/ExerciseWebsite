@@ -1,46 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using AutoMapper;
+using ExerciseWebsite.Entities;
+using ExerciseWebsite.Helpers;
+using ExerciseWebsite.Models.SetList;
+using ExerciseWebsite.Services;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace ExerciseWebsite.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SetListController : ControllerBase
     {
+        private ISetListService _setListService;
+        private IMapper _mapper;
+        public SetListController(ISetListService setListService,
+                                 IMapper mapper)
+        {
+            _setListService = setListService;
+            _mapper = mapper;
+        }
+
         // GET: api/<SetListController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult GetAll()
         {
-            return new string[] { "value1", "value2" };
+            var setLists = _setListService.GetAll();
+            return Ok(setLists);
         }
 
         // GET api/<SetListController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return "value";
+            var setList = await _setListService.GetById(id);
+            return Ok(setList);
         }
 
-        // POST api/<SetListController>
+        // POST api/<setListController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Create([FromBody] SetListModel model)
         {
+            var setList = _mapper.Map<SetList>(model);
+
+            try
+            {
+                await _setListService.Create(setList);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+
         }
 
-        // PUT api/<SetListController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Update(int id, [FromBody] SetListModel model)
         {
+            var setList = _mapper.Map<SetList>(model);
+            setList.Id = id;
+
+            try
+            {
+                await _setListService.Update(setList);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         // DELETE api/<SetListController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _setListService.Delete(id);
+            return Ok();
         }
     }
 }

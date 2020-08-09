@@ -7,10 +7,10 @@ namespace ExerciseWebsite.Services
 {
     public interface ISetService
     {
-        Task<Set> Create(Set Set);
+        Task<Set> Create(Set set);
         Task<Set> GetById(int id);
         IEnumerable<Set> GetAll();
-        Task Update(Set SetParam);
+        Task Update(Set setParam);
         Task Delete(int id);
 
     }
@@ -23,14 +23,14 @@ namespace ExerciseWebsite.Services
             _context = context;
         }
 
-        public async Task<Set> Create(Set Set)
+        public async Task<Set> Create(Set set)
         {
             // Check if already added?
 
-            _context.Sets.Add(Set);
+            _context.Sets.Add(set);
             await _context.SaveChangesAsync();
 
-            return Set;
+            return set;
         }
 
         public IEnumerable<Set> GetAll()
@@ -40,24 +40,24 @@ namespace ExerciseWebsite.Services
 
         public async Task<Set> GetById(int id)
         {
-            var Set = await _context.Sets.FindAsync(id);
+            var set = await _context.Sets.FindAsync(id);
 
-            if (Set != null)
-                return Set;
+            if (set != null)
+                return set;
             else
-                throw new AppException($"No Set with id {id} found.");
+                throw new AppException($"No set with id {id} found.");
         }
 
-        public async Task Update(Set SetParam)
+        public async Task Update(Set setParam)
         {
-            var Set = await _context.Sets.FindAsync(SetParam.Id);
+            var set = await _context.Sets.FindAsync(setParam.Id);
 
-            if (Set == null)
-                throw new AppException($"No Set with id {SetParam.Id} found.");
+            if (set == null)
+                throw new AppException($"No set with id {setParam.Id} found.");
 
-            Set.ExerciseId = SetParam.ExerciseId;
-            Set.RepCount = SetParam.RepCount;
-            Set.SetCount = SetParam.SetCount;
+            set.ExerciseId = setParam.ExerciseId;
+            set.RepCount = setParam.RepCount;
+            set.SetCount = setParam.SetCount;
 
             await _context.SaveChangesAsync();
         }
@@ -65,11 +65,11 @@ namespace ExerciseWebsite.Services
 
         public async Task Delete(int id)
         {
-            var Set = await _context.Sets.FindAsync(id);
+            var set = await _context.Sets.FindAsync(id);
 
-            if (Set != null)
+            if (set != null)
             {
-                _context.Sets.Remove(Set);
+                _context.Sets.Remove(set);
                 await _context.SaveChangesAsync();
             }
             else
