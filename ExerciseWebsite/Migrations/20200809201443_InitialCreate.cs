@@ -65,7 +65,7 @@ namespace ExerciseWebsite.Migrations
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     AvgDifficulty = table.Column<double>(nullable: false),
-                    Rating = table.Column<int>(nullable: false),
+                    Rating = table.Column<double>(nullable: false),
                     RatingCount = table.Column<int>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false)
                 },
