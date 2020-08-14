@@ -29,6 +29,13 @@ namespace ExerciseWebsite.Controllers
             return Ok(setLists);
         }
 
+        [HttpGet("workoutId={workoutId}")]
+        public IActionResult GetByWorkoutId(int workoutId)
+        {
+            var setLists = _setListService.GetSetListsByWorkoutId(workoutId);
+            return Ok(setLists);
+        }
+
         // GET api/<SetListController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)

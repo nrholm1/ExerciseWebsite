@@ -1,6 +1,7 @@
 ﻿using ExerciseWebsite.Entities;
 using ExerciseWebsite.Helpers;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ExerciseWebsite.Services
@@ -10,9 +11,9 @@ namespace ExerciseWebsite.Services
         Task<SetList> Create(SetList setList);
         Task<SetList> GetById(int id);
         IEnumerable<SetList> GetAll();
+        IEnumerable<SetList> GetSetListsByWorkoutId(int workoutId);
         Task Update(SetList SetListParam);
         Task Delete(int id);
-
     }
     public class SetListService : ISetListService
     {
@@ -46,6 +47,13 @@ namespace ExerciseWebsite.Services
                 return setList;
             else
                 throw new AppException($"No setList with id {id} found.");
+        }
+
+        // Smarter to get setLists themselves? Less roundtrips
+        public IEnumerable<SetList> GetSetListsByWorkoutId(int workoutId)
+        {
+            var setLists = _context.SetLists.Where(x => x.WorkoutId == workoutId);
+            return setLists.OrderBy(setList => setList.OrderNo);
         }
 
         public async Task Update(SetList setListParam)
