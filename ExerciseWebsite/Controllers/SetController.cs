@@ -37,6 +37,14 @@ namespace ExerciseWebsite.Controllers
             return Ok(Set);
         }
 
+        [HttpPost("ids")]
+        public async Task<IActionResult> GetByIds([FromBody] ArrayDto idsDto)
+        {
+            int[] ids = idsDto.Ids;
+            var Sets = await _setService.GetByIds(ids);
+            return Ok(Sets);
+        }
+
         // POST api/<SetController>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] SetModel model)

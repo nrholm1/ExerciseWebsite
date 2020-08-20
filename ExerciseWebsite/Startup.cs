@@ -15,7 +15,7 @@ namespace ExerciseWebsite
     {
         private readonly IWebHostEnvironment _env;
         private readonly IConfiguration _configuration;
-
+        
         public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             _env = env;

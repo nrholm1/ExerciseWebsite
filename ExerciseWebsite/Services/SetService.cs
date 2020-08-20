@@ -1,6 +1,8 @@
 ﻿using ExerciseWebsite.Entities;
 using ExerciseWebsite.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ExerciseWebsite.Services
@@ -10,6 +12,8 @@ namespace ExerciseWebsite.Services
         Task<Set> Create(Set set);
         Task<Set> GetById(int id);
         IEnumerable<Set> GetAll();
+
+        Task<Set[]> GetByIds(int[] ids);
         Task Update(Set setParam);
         Task Delete(int id);
 
@@ -47,6 +51,19 @@ namespace ExerciseWebsite.Services
             else
                 throw new AppException($"No set with id {id} found.");
         }
+
+        public async Task<Set[]> GetByIds(int[] ids)
+        {
+            var sets = await _context.Sets
+                                     .Where(set => ids.Contains(set.Id))
+                                     .ToArrayAsync();
+
+            if (sets != null)
+                return sets;
+            else
+                throw new AppException($"No sets found from passed id array.");
+        }
+
 
         public async Task Update(Set setParam)
         {
