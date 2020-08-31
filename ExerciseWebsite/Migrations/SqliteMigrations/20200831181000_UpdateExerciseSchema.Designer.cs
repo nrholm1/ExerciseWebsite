@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExerciseWebsite.Migrations
 {
     [DbContext(typeof(SqliteDataContext))]
-    [Migration("20200809201443_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200831181000_UpdateExerciseSchema")]
+    partial class UpdateExerciseSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,18 +25,25 @@ namespace ExerciseWebsite.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Difficulty")
                         .HasColumnType("REAL");
 
                     b.Property<string>("ExType")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MuscleGroup")
+                    b.Property<string>("MainMuscleGroup")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SecondaryMuscleGroup")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

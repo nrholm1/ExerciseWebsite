@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExerciseWebsite.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class UpdateExerciseSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,11 @@ namespace ExerciseWebsite.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    MuscleGroup = table.Column<string>(nullable: true),
-                    ExType = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    MainMuscleGroup = table.Column<string>(nullable: false),
+                    SecondaryMuscleGroup = table.Column<string>(nullable: true),
+                    ExType = table.Column<string>(nullable: false),
                     Difficulty = table.Column<double>(nullable: false)
                 },
                 constraints: table =>

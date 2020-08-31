@@ -23,18 +23,25 @@ namespace ExerciseWebsite.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Difficulty")
                         .HasColumnType("REAL");
 
                     b.Property<string>("ExType")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MuscleGroup")
+                    b.Property<string>("MainMuscleGroup")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SecondaryMuscleGroup")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

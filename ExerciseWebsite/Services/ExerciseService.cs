@@ -58,7 +58,8 @@ namespace ExerciseWebsite.Services
             exercise.Description = exerciseParam.Description;
             exercise.Difficulty = exerciseParam.Difficulty;
             exercise.ExType = exerciseParam.ExType;
-            exercise.MuscleGroup = exerciseParam.MuscleGroup;
+            exercise.MainMuscleGroup = exerciseParam.MainMuscleGroup;
+            exercise.SecondaryMuscleGroup = exerciseParam.SecondaryMuscleGroup;
             exercise.Name = exerciseParam.Name;
 
             await _context.SaveChangesAsync();
