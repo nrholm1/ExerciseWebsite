@@ -37,6 +37,14 @@ namespace ExerciseWebsite.Controllers
             return Ok(exercise);
         }
 
+        // GET api/<ExerciseController>/5
+        [HttpGet("name={nameQuery}")]
+        public async Task<IActionResult> GetMostRelevantByName(string nameQuery)
+        {
+            var exercises = await _exerciseService.GetMostRelevantByName(nameQuery);
+            return Ok(exercises);
+        }
+
         // POST api/<ExerciseController>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ExerciseModel model)

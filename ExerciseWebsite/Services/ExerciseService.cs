@@ -1,6 +1,9 @@
 ﻿using ExerciseWebsite.Entities;
 using ExerciseWebsite.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace ExerciseWebsite.Services
@@ -10,6 +13,7 @@ namespace ExerciseWebsite.Services
         Task<Exercise> Create(Exercise exercise);
         Task<Exercise> GetById(int id);
         IEnumerable<Exercise> GetAll();
+        Task<IEnumerable<Exercise>> GetMostRelevantByName(string nameQuery);
         Task Update(Exercise exerciseParam);
         Task Delete(int id);
 
@@ -46,6 +50,21 @@ namespace ExerciseWebsite.Services
                 return exercise;
             else
                 throw new AppException($"No exercise with id {id} found.");
+        }
+
+        public async Task<IEnumerable<Exercise>> GetMostRelevantByName(string nameQuery)
+        {
+            if (string.IsNullOrWhiteSpace(nameQuery))
+                throw new AppException("Query cannot be null or whitespace.");
+
+            nameQuery = nameQuery.ToLower();
+
+            var exercises = await _context.Exercises.Where(x => x.Name.Contains(nameQuery)).ToListAsync();
+
+            if (exercises == null)
+                throw new AppException($"No exercises with found by query '{nameQuery}'");
+
+            return exercises;
         }
 
         public async Task Update(Exercise exerciseParam)
