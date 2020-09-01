@@ -59,7 +59,9 @@ namespace ExerciseWebsite.Services
 
             nameQuery = nameQuery.ToLower();
 
-            var exercises = await _context.Exercises.Where(x => x.Name.Contains(nameQuery)).ToListAsync();
+            var exercises = await _context.Exercises.Where(x => x.Name.ToLower()
+                                                                 .Contains(nameQuery))
+                                                                 .ToListAsync();
 
             if (exercises == null)
                 throw new AppException($"No exercises with found by query '{nameQuery}'");
