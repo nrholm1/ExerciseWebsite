@@ -1,6 +1,7 @@
 ﻿using ExerciseWebsite.Entities;
 using ExerciseWebsite.Helpers;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -60,7 +61,7 @@ namespace ExerciseWebsite.Services
             nameQuery = nameQuery.ToLower();
 
             var exercises = await _context.Exercises.Where(x => x.Name.ToLower()
-                                                                 .Contains(nameQuery))
+                                                                 .Contains(nameQuery)) // OrderBy IndexOf(nameQuery) does not work, as it cannot be evaluated into SQL statements properly
                                                                  .ToListAsync();
 
             if (exercises == null)
