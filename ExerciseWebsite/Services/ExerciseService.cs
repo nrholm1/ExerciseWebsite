@@ -62,6 +62,7 @@ namespace ExerciseWebsite.Services
 
             var exercises = await _context.Exercises.Where(x => x.Name.ToLower()
                                                                  .Contains(nameQuery)) // OrderBy IndexOf(nameQuery) does not work, as it cannot be evaluated into SQL statements properly
+                                                                 .Take(5)
                                                                  .ToListAsync();
 
             if (exercises == null)
