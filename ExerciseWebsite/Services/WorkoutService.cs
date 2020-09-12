@@ -97,7 +97,6 @@ namespace ExerciseWebsite.Services
 
             workout.Title = workoutParam.Title;
             workout.Description = workoutParam.Description;
-            workout.SetListId = workoutParam.SetListId;
             workout.AvgDifficulty = workoutParam.AvgDifficulty;
             workout.Rating = workoutParam.Rating;
             workout.RatingCount = workoutParam.RatingCount;

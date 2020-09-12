@@ -54,7 +54,7 @@ namespace ExerciseWebsite.Controllers
             try
             {
                 await _setService.Create(Set);
-                return Ok();
+                return Ok(Set);
             }
             catch (AppException ex)
             {
