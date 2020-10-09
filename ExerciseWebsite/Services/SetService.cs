@@ -20,7 +20,7 @@ namespace ExerciseWebsite.Services
     }
     public class SetService : ISetService
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         public SetService(DataContext context)
         {

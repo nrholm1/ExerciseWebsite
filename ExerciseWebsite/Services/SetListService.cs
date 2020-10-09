@@ -12,12 +12,12 @@ namespace ExerciseWebsite.Services
         Task<SetList> GetById(int id);
         IEnumerable<SetList> GetAll();
         IEnumerable<SetList> GetSetListsByWorkoutId(int workoutId);
-        Task Update(SetList SetListParam);
+        Task Update(SetList setListParam);
         Task Delete(int id);
     }
     public class SetListService : ISetListService
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         public SetListService(DataContext context)
         {

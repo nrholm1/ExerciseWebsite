@@ -19,7 +19,7 @@ namespace ExerciseWebsite.Services
     }
     public class WorkoutService : IWorkoutService
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         public WorkoutService(DataContext context)
         {

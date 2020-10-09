@@ -21,7 +21,7 @@ namespace ExerciseWebsite.Services
     }
     public class ExerciseService : IExerciseService
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         public ExerciseService(DataContext context)
         {
