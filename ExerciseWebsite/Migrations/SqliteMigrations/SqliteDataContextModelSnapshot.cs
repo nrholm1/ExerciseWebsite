@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ExerciseWebsite.Migrations
+namespace ExerciseWebsite.Migrations.sqlitemigrations
 {
     [DbContext(typeof(SqliteDataContext))]
     partial class SqliteDataContextModelSnapshot : ModelSnapshot
@@ -111,9 +111,6 @@ namespace ExerciseWebsite.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<int>("RatingCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("SetListId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")

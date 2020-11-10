@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ExerciseWebsite.Migrations
+namespace ExerciseWebsite.Migrations.sqlitemigrations
 {
     [DbContext(typeof(SqliteDataContext))]
-    [Migration("20200831181000_UpdateExerciseSchema")]
-    partial class UpdateExerciseSchema
+    [Migration("20201110085533_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,9 +113,6 @@ namespace ExerciseWebsite.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<int>("RatingCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("SetListId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")

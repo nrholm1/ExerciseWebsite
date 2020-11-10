@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\SqlServerMigrations\" />
+    <Folder Include="Migrations\SqliteMigrations\" />
   </ItemGroup>
 
   <ItemGroup>

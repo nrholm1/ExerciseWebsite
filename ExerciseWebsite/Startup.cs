@@ -24,10 +24,16 @@ namespace ExerciseWebsite
 
         public void ConfigureServices(IServiceCollection services)
         {
-            if (_env.IsProduction())
+            if (_env.IsProduction()) 
+            {
+                Console.WriteLine("Is Production!");
                 services.AddDbContext<DataContext>();
+            }
             else
+            {
+                Console.WriteLine("Is Not Production!");
                 services.AddDbContext<DataContext, SqliteDataContext>();
+            }
 
             services.AddCors();
             services.AddControllers();
