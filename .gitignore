@@ -1,0 +1,5 @@
+/ExerciseWebsite/appsettings.json
+/ExerciseWebsite/appsettings.Development.json
+/ExerciseWebsite/bin/*
+/ExerciseWebsite/LocalDatabase.db
+/ExerciseWebsite/obj/*
